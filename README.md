@@ -1,26 +1,23 @@
 # CF-Legacy-Proxy
-![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
-![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Workers-F38020.svg?logo=Cloudflare&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-Vanilla-F7DF1E?logo=javascript&logoColor=black)
 
 让不支持现代 TLS/SSL 加密协议的老旧设备（如塞班系统、早期功能机、复古 PDA 等）能够重新访问现代 HTTPS 网站的 Cloudflare Worker 反向代理脚本。
 
-## ✨ 核心功能 (Features)
+## 核心功能
 
-* **协议降级适配**：强制使用 HTTPS 请求目标网站，但向老旧客户端返回纯 HTTP 内容。
+* **协议降级**：强制使用 HTTPS 请求目标网站，但向老旧客户端返回纯 HTTP 内容。
 * **HSTS 剥离**：自动移除 `Strict-Transport-Security` 响应头，防止浏览器强制跳转 HTTPS。
 * **重定向重写**：自动拦截 `Location` 头，将后端返回的 `https://` 重定向链接替换为 `http://`。
-* **真实 IP 透传**：保留并传递访客的真实 IP (`X-Real-IP`) 及地理位置信息给后端服务器。
+* **IP 透传**：保留并传递访客的真实 IP (`X-Real-IP`) 及地理位置信息给后端服务器。
 * **跨域支持 (CORS)**：自动添加允许跨域的响应头，方便前端静态资源的加载。
 
-## 🚀 快速部署 (Deployment)
+## 快速部署
 
 1. 登录 [Cloudflare Dashboard](https://dash.cloudflare.com/)，进入 **Workers & Pages**。
 2. 点击 **Create Worker**，起个名字并创建。
 3. 点击 **Edit code**，将本项目中的代码（`universal-proxy.js`）复制并粘贴替换掉默认代码。
 4. 点击右上角的 **Deploy** 保存。
 
-## ⚙️ 环境配置 (Configuration)
+## 环境配置
 
 为了让脚本知道你需要代理哪个网站，你需要配置一个环境变量：
 
